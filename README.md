@@ -250,33 +250,6 @@ gui:
 
 ---
 
-## Building from Source
-
-### Requirements
-
-- Java 21 or higher
-- Maven 3.6+
-- Paper API 1.21.1+ (automatically downloaded)
-
-### Build Instructions
-
-```bash
-git clone <repository-url>
-cd TG-SquidGame
-mvn clean package
-```
-
-The compiled JAR will be in `target/TG-SquidGame-1.2.jar`
-
-### Development Setup
-
-The plugin uses:
-- **Paper API**: For enhanced server compatibility and performance
-- **Java 21**: For modern language features and performance improvements
-- **Maven Shade Plugin**: For creating a standalone JAR file
-
----
-
 ## Future Minigames (Planned)
 
 - Glass Bridge
@@ -307,7 +280,7 @@ This plugin is proprietary software. All rights reserved by Techinpoint Gamerz.
 
 ## Changelog
 
-### Version 1.2 (Latest)
+### Version 1.1 (Latest)
 - **Fixed**: Teleportation bug during countdown - players no longer teleported during 5-second countdown
 - **Enhanced**: GUI design with improved lore, Unicode symbols, and color-coded information
 - **Added**: Arena setup completion notifications when all positions are configured
