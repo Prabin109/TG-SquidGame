@@ -1,6 +1,6 @@
 # TG SquidGame Plugin
 
-**Version:** 1.2
+**Version:** 1.1
 **Author:** Techinpoint Gamerz (TG)
 **Minecraft Version:** 1.21.1+
 **Server Type:** Paper (recommended), Spigot compatible
