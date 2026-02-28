@@ -297,7 +297,7 @@ This plugin is proprietary software. All rights reserved by Techinpoint Gamerz.
 
 ## Changelog
 
-### Version 1.2 (Current)
+### Version 1.4 (Current)
 - Added Holi Festival minigame
 - Migrated to Paper API with Java 21
 - Enhanced GUI with improved player controls
