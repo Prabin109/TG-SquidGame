@@ -1,24 +1,20 @@
-# TG SquidGame - Complete Setup Tutorial (Version 1.2)
+# TG SquidGame - Complete Setup Tutorial
 
-This tutorial will guide you through setting up and running your first Red Light Green Light game arena with all the latest improvements and features.
-
-**Requirements:**
-- Paper 1.21.1+ or Spigot 1.21.1+
-- Java 21 or higher
-- TG-SquidGame v1.2
+This tutorial will guide you through setting up and running both Red Light Green Light and Holi Festival game arenas.
 
 ---
 
 ## Table of Contents
 
 1. [Installation](#installation)
-2. [Creating Your First Arena](#creating-your-first-arena)
-3. [Configuring Arena Positions](#configuring-arena-positions)
-4. [Using the GUI Editor](#using-the-gui-editor)
-5. [Starting a Game](#starting-a-game)
-6. [Player Experience](#player-experience)
-7. [Advanced Configuration](#advanced-configuration)
-8. [Troubleshooting](#troubleshooting)
+2. [Choosing Your Game Type](#choosing-your-game-type)
+3. [Creating Red Light Green Light Arena](#creating-red-light-green-light-arena)
+4. [Creating Holi Festival Arena](#creating-holi-festival-arena)
+5. [Using the GUI Editor](#using-the-gui-editor)
+6. [Starting a Game](#starting-a-game)
+7. [Player Experience](#player-experience)
+8. [Advanced Configuration](#advanced-configuration)
+9. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -26,15 +22,10 @@ This tutorial will guide you through setting up and running your first Red Light
 
 ### Step 1: Install the Plugin
 
-**Prerequisites:**
-- Ensure your server is running **Java 21 or higher**
-- Use **Paper 1.21.1+** (recommended) or **Spigot 1.21.1+**
-
-**Installation:**
 1. Download `TG-SquidGame-1.2.jar`
 2. Place it in your server's `plugins` folder
-3. Start or restart your Minecraft server
-4. Check the console for the message: `TG SquidGame v1.2 by Techinpoint Gamerz has been enabled!`
+3. Start or restart your Minecraft server (requires Paper 1.21.1+ or compatible)
+4. Check the console for the message: `TG SquidGame v1.0 by Techinpoint Gamerz has been enabled!`
 
 ### Step 2: Verify Installation
 
@@ -47,7 +38,25 @@ You should see the help menu with all available commands.
 
 ---
 
-## Creating Your First Arena
+## Choosing Your Game Type
+
+The plugin supports two game types, each with different setup requirements:
+
+### Red Light Green Light
+- Classic Squid Game minigame
+- Players race to finish line while freezing during red light
+- Requires 8 position points (full setup)
+- Best for: Competitive racing gameplay
+
+### Holi Festival
+- Indian festival-inspired color battle
+- Players spray colors on each other to score points
+- Requires only 4 position points (simplified setup)
+- Best for: Casual fun and team events
+
+---
+
+## Creating Red Light Green Light Arena
 
 ### Step 1: Create the Arena File
 
@@ -65,13 +74,11 @@ Arena 'myarena' created successfully!
 Configure it with: /tgsg myarena setpos1, setpos2, etc.
 ```
 
----
+### Step 2: Configuring Arena Positions
 
-## Configuring Arena Positions
+To set up a Red Light Green Light arena, you need to define 8 key locations. Here's the recommended order:
 
-To set up an arena, you need to define 8 key locations. Here's the recommended order:
-
-### Step 2: Define Arena Boundaries
+#### Define Arena Boundaries
 
 Stand at one corner of where you want your arena to be:
 ```
@@ -85,7 +92,7 @@ Walk to the opposite corner (diagonal):
 
 **Tip:** These two points define a 3D rectangular region. Everything inside is the arena.
 
-### Step 3: Define Starting Area
+#### Define Starting Area
 
 Stand at one corner of where players should spawn:
 ```
@@ -99,7 +106,7 @@ Walk to the opposite corner of the starting area:
 
 **Tip:** Players will be randomly spawned within this region when the game starts.
 
-### Step 4: Define Win Zone
+#### Define Win Zone
 
 Stand at one corner of the finish line:
 ```
@@ -113,14 +120,14 @@ Walk to the opposite corner:
 
 **Tip:** Players who reach this zone win the game.
 
-### Step 5: Set Lobby Spawn
+#### Set Lobby Spawn
 
 Stand where players should wait before the game starts:
 ```
 /tgsg myarena setlobby
 ```
 
-### Step 6: Set Spectator Spawn
+#### Set Spectator Spawn
 
 Stand where eliminated/winning players should spectate from:
 ```
@@ -129,7 +136,7 @@ Stand where eliminated/winning players should spectate from:
 
 **Tip:** Choose a location with a good view of the arena.
 
-### Step 7: Save Your Configuration
+#### Save Your Configuration
 
 ```
 /tgsg myarena save
@@ -140,25 +147,76 @@ Stand where eliminated/winning players should spectate from:
 Arena 'myarena' saved successfully!
 ```
 
-### Step 8: Arena Setup Completion (New in v1.2)
+---
 
-When you set the final required position, you'll see a **yellow success message**:
+## Creating Holi Festival Arena
+
+Holi arenas are simpler to set up - no start zones or win zones needed!
+
+### Step 1: Create the Arena File
+
 ```
-Arena setup completed successfully! All positions are now set.
+/tgsg create holiarena Holi
 ```
 
-This confirms that your arena is fully configured and ready for use. You can verify this by running:
+Replace `holiarena` with your preferred arena name (no spaces).
+
+**Expected Output:**
 ```
-/tgsg list
+Arena 'holiarena' created successfully!
+Configure it with: /tgsg holiarena setpos1, setpos2, etc.
 ```
 
-Your arena should now show as "Ready" with a green status indicator.
+### Step 2: Configuring Arena Positions
+
+For Holi, you only need to define 4 key locations:
+
+#### Define Arena Boundaries
+
+Stand at one corner of your play area:
+```
+/tgsg holiarena setpos1
+```
+
+Walk to the opposite corner (diagonal):
+```
+/tgsg holiarena setpos2
+```
+
+**Tip:** Make the arena spacious (30x30 blocks or larger) so players have room to run and dodge.
+
+#### Set Lobby Spawn
+
+Stand where players should wait before the game starts:
+```
+/tgsg holiarena setlobby
+```
+
+#### Set Spectator Spawn
+
+Stand where spectators should watch from (preferably elevated):
+```
+/tgsg holiarena setspec
+```
+
+**Tip:** Place spectator spawn above the arena for a bird's eye view.
+
+#### Save Your Configuration
+
+```
+/tgsg holiarena save
+```
+
+**Expected Output:**
+```
+Arena 'holiarena' saved successfully!
+```
 
 ---
 
 ## Using the GUI Editor
 
-The GUI editor allows you to adjust arena settings without manually editing YAML files. **Version 1.2** features an enhanced interface with improved visual design.
+The GUI editor allows you to adjust arena settings without manually editing YAML files.
 
 ### Opening the Editor
 
@@ -170,31 +228,9 @@ A graphical interface will open with the following options:
 
 ### Time Limit Setting
 
-- **Item:** Clock (⏰)
+- **Item:** Clock
 - **Action:** Click to cycle through time options (60s, 90s, 120s, 150s, 180s, etc.)
 - **Purpose:** Sets how long the game runs before ending
-
-### Minimum Players Setting (New in v1.2)
-
-- **Item:** Player Head (👥)
-- **Visual:** Enhanced lore with Unicode symbols and color coding
-- **Actions:**
-  - **Left Click:** +1 player (Green)
-  - **Right Click:** -1 player (Red)
-  - **Shift + Left Click:** +5 players (Green)
-  - **Shift + Right Click:** -5 players (Red)
-- **Purpose:** Sets minimum players required before game can start
-
-### Auto-Start Timer (New in v1.2)
-
-- **Item:** Clock (⏱)
-- **Visual:** Professional lore with clear action descriptions
-- **Actions:**
-  - **Left Click:** +5 seconds (Green)
-  - **Right Click:** -5 seconds (Red)
-  - **Shift + Left Click:** +30 seconds (Green)
-  - **Shift + Right Click:** -30 seconds (Red)
-- **Purpose:** Sets countdown timer when minimum players are reached
 
 ### Barrier Toggle
 
@@ -242,57 +278,39 @@ Players can join the arena with:
 
 They will be teleported to the lobby spawn point.
 
-### Step 3: Auto-Start Feature (New in v1.2)
+### Step 3: Start the Game
 
-The game can now start automatically when the minimum number of players join:
-
-1. **Minimum Players Reached:** When enough players join, an auto-start countdown begins
-2. **Countdown Display:** Players see the countdown in chat and BossBar
-3. **Manual Override:** Admins can still manually start before the timer expires
-
-### Step 4: Manual Start (Traditional Method)
-
-When ready, an admin can manually start:
+When ready, an admin runs:
 ```
 /tgsg myarena start
 ```
 
 **What Happens:**
-1. 5-second countdown begins (players stay in their current positions - **v1.2 improvement**)
-2. BossBar appears showing countdown
-3. After countdown, game starts with "GREEN LIGHT - GO!"
-4. Barriers (if enabled) appear around the arena
-5. Game timer begins
-
-### Game Start Countdown (v1.2 Improvement)
-
-**Important Change:** Players are **no longer teleported** during the 5-second countdown. This means:
-
-- Players start the game from wherever they are standing when countdown ends
-- No unwanted teleportation during countdown phase
-- More strategic positioning opportunities
-- Smoother game start experience
-
-**Recommendation:** Have players position themselves in the starting area before the countdown begins.
+1. All players are teleported to random positions in the starting area
+2. BossBar appears showing "GREEN LIGHT - GO!"
+3. Barriers (if enabled) appear around the arena
+4. Game timer begins
 
 ---
 
 ## Player Experience
 
-### During Green Light
+### Red Light Green Light Experience
 
-- **BossBar:** Shows "🟢 GREEN LIGHT - GO!" in green
+#### During Green Light
+
+- **BossBar:** Shows "GREEN LIGHT - GO!" in green
 - **Sound:** High-pitched chime sound plays
 - **Action:** Players can move freely toward the win zone
 
-### During Red Light
+#### During Red Light
 
-- **BossBar:** Shows "🔴 RED LIGHT - STOP!" in red
+- **BossBar:** Shows "RED LIGHT - STOP!" in red
 - **Sound:** Low bass sound plays
 - **Action:** Players must freeze completely
 - **Penalty:** Moving even slightly results in instant elimination
 
-### Elimination
+#### Elimination
 
 When eliminated:
 - Player receives message: "You moved during RED LIGHT! You are eliminated."
@@ -301,15 +319,15 @@ When eliminated:
 - Lightning sound effect plays
 - Can watch the rest of the game
 
-### Winning
+#### Winning
 
 When a player reaches the win zone:
-- Broadcast message: "⭐ [Player] has reached the finish line!"
+- Broadcast message: "Player has reached the finish line!"
 - Player receives: "Congratulations! You won!"
 - Victory sound plays
 - Enters spectator mode to watch remaining players
 
-### Game End
+#### Game End
 
 The game ends when:
 - Time runs out, OR
@@ -319,13 +337,60 @@ All players are returned to the lobby spawn point.
 
 ---
 
+### Holi Festival Experience
+
+#### Getting Started
+
+When joining:
+- Player receives Holi Pichkari (color spray gun)
+- Item appears in inventory as a Blaze Rod
+- Right-click to spray vibrant colors
+
+#### During Gameplay
+
+- **BossBar:** Shows "Holi Festival - Time remaining"
+- **Objective:** Spray colors on other players
+- **Scoring:** Each successful hit adds 1 point
+- **Cooldown:** 3 seconds between sprays
+- **Effects:** Hit players glow with color particles
+
+#### Spraying Colors
+
+How to use the Pichkari:
+1. Aim at another player
+2. Right-click to spray
+3. Colorful particles shoot forward
+4. Hit displays particle burst on target
+5. Target glows and shows color effects
+
+#### Getting Hit
+
+When sprayed with color:
+- Screen title shows "COLORED!"
+- Your character glows
+- Colorful particles surround you for 10 seconds
+- Message shows who colored you
+
+#### Game End
+
+The game ends when:
+- Time limit is reached (default 10 minutes)
+
+At game end:
+- Leaderboard displays top 5 players
+- Champion gets victory title
+- Fireworks celebration
+- All players return to lobby
+
+---
+
 ## Advanced Configuration
 
 ### Manual YAML Editing
 
 Arena files are located in `plugins/TG-SquidGame/arenas/`
 
-Example `myarena.yml` (v1.2):
+Example `myarena.yml`:
 ```yaml
 arena:
   name: "myarena"
@@ -343,42 +408,23 @@ arena:
   timeLimit: 180
   randomLogic: "complex"
   soundEnabled: true
-  minPlayers: 2          # New in v1.2
-  autoStartTimer: 30     # New in v1.2
 ```
 
-### New Configuration Options (v1.2)
-
-- `minPlayers`: Minimum players required before auto-start begins (default: 2)
-- `autoStartTimer`: Seconds to wait before auto-starting when minimum players reached (default: 30)
-
-### Custom GUI Configuration (Enhanced in v1.2)
+### Custom GUI Configuration
 
 You can customize the GUI by editing the `gui` section:
 
 ```yaml
 gui:
   name: "&6Custom Arena Settings"
-  size: 45  # Must be multiple of 9 (9, 18, 27, 36, 45, 54)
+  size: 27  # Must be multiple of 9
   items:
     timeLimit:
-      slot: 11  # Inventory slot (0-44 for size 45)
-      name: "&a⏰ Custom Time Name"
+      slot: 11  # Inventory slot (0-26)
+      name: "&a⏳ Custom Time Name"
       lore:
         - "&7Your custom description"
         - "&7Second line"
-    minPlayers:
-      slot: 13
-      name: "&b👥 Player Requirements"
-      lore:
-        - "&bMinimum Players: &f{minPlayers}"
-        - "&7Click to adjust"
-    autoStartTimer:
-      slot: 15
-      name: "&e⏱ Auto-Start Settings"
-      lore:
-        - "&eTimer: &f{autoStartTimer} seconds"
-        - "&7Click to modify"
 ```
 
 ### Random Logic Options
@@ -391,7 +437,7 @@ Edit in the arena file:
 randomLogic: "complex"
 ```
 
-### Global Settings (Updated for v1.2)
+### Global Settings
 
 Edit `plugins/TG-SquidGame/config.yml`:
 
@@ -399,31 +445,26 @@ Edit `plugins/TG-SquidGame/config.yml`:
 settings:
   prefix: "&6[TG SquidGame]&r "
   defaultTimeLimit: 180
-  countdownTimer: 5
   enableJoinMessage: true
   soundEffects: true
   defaultBossBarColor: "GREEN"
   useComplexRandomLogic: true
-  
-game:
-  # Default game settings
-  startCountdown: 5  # seconds before game starts
-  defaultGameTime: 180  # seconds for game duration
-  movementThreshold: 0.15  # distance threshold for movement detection
-  
-arena:
-  # Arena-specific settings
-  autoSaveOnEdit: false  # whether to auto-save when exiting edit mode
-  requireEditModeForSave: true  # require edit mode to use save command
-```
 
-**New Options Explained:**
-- `countdownTimer`: Duration of countdown before game starts
-- `startCountdown`: Game-specific countdown setting
-- `defaultGameTime`: Default duration for new arenas
-- `movementThreshold`: Sensitivity for red light movement detection (0.15 = very sensitive)
-- `autoSaveOnEdit`: Automatically save when exiting edit mode
-- `requireEditModeForSave`: Must be in edit mode to save changes
+holi:
+  duration: 600  # 10 minutes
+  pichkari:
+    name: "&bHoli Pichkari"
+    cooldown: 3  # seconds
+    range: 10.0  # blocks
+  colors:
+    - RED
+    - BLUE
+    - GREEN
+    - YELLOW
+    - PURPLE
+    - ORANGE
+  fireworks: true
+```
 
 After editing, reload:
 ```
@@ -436,10 +477,17 @@ After editing, reload:
 
 ### Problem: "Arena is not fully configured"
 
-**Solution:** Make sure you've set all 8 positions:
+**Solution:** Check required positions based on game type:
+
+For Red Light Green Light (8 positions required):
 - pos1 and pos2 (arena boundaries)
 - startPos1 and startPos2 (spawn area)
 - winPos1 and winPos2 (finish line)
+- lobby (waiting area)
+- spectator (observer location)
+
+For Holi (4 positions required):
+- pos1 and pos2 (arena boundaries)
 - lobby (waiting area)
 - spectator (observer location)
 
@@ -476,28 +524,8 @@ Verify with:
 
 **Solution:** Check these requirements:
 1. Arena must be fully configured (all positions set)
-2. At least the minimum number of players must have joined (check with GUI editor)
+2. At least one player must have joined with `/tgsg myarena join`
 3. No game is currently running in that arena
-4. **New in v1.2:** Check if auto-start timer is enabled and wait for countdown
-
-### Problem: Auto-start isn't working (New in v1.2)
-
-**Solution:**
-1. Check minimum players setting: `/tgsg myarena edit`
-2. Ensure enough players have joined: `/tgsg list`
-3. Verify auto-start timer is set above 0 seconds
-4. Check if manual start was used (overrides auto-start)
-
-### Problem: Players complain about teleportation during countdown
-
-**Solution:** This was fixed in v1.2! Players are no longer teleported during the 5-second countdown. If you're still experiencing this, ensure you're using TG-SquidGame v1.2 or later.
-
-### Problem: Java version errors
-
-**Solution:** TG-SquidGame v1.2 requires Java 21 or higher. Update your server's Java version:
-1. Download Java 21 from Oracle or OpenJDK
-2. Update your server startup script to use Java 21
-3. Restart your server
 
 ### Problem: GUI items don't work
 
@@ -510,7 +538,7 @@ Verify with:
 
 ## Building a Great Arena
 
-### Design Tips
+### Red Light Green Light Design Tips
 
 1. **Distance:** Make the start-to-finish distance 30-50 blocks for balanced gameplay
 2. **Height:** Keep the arena relatively flat or use gentle slopes
@@ -519,7 +547,7 @@ Verify with:
 5. **Lobby:** Place the lobby outside the arena boundaries
 6. **Width:** Allow 10-20 blocks of width so players can spread out
 
-### Example Coordinates
+#### Example Coordinates (Red Light Green Light)
 
 For a basic 40-block straightaway arena:
 
@@ -534,6 +562,26 @@ For a basic 40-block straightaway arena:
 /tgsg myarena setspec        → Stand at 105, 80, 150
 ```
 
+### Holi Festival Design Tips
+
+1. **Size:** Make the arena 30x30 blocks or larger for movement space
+2. **Obstacles:** Add pillars, walls, or structures for tactical gameplay
+3. **Height:** Multiple levels add vertical gameplay dimension
+4. **Open Areas:** Balance cover with open spaces for chasing
+5. **Spectator View:** Elevated position for best view of action
+6. **Theme:** Decorate with colorful blocks to match festival vibe
+
+#### Example Coordinates (Holi)
+
+For a 40x40 block arena:
+
+```
+/tgsg holiarena setpos1      → Stand at 200, 64, 200
+/tgsg holiarena setpos2      → Stand at 240, 74, 240
+/tgsg holiarena setlobby     → Stand at 220, 64, 190
+/tgsg holiarena setspec      → Stand at 220, 85, 220
+```
+
 ---
 
 ## Quick Reference Card
@@ -542,15 +590,17 @@ For a basic 40-block straightaway arena:
 
 | Task | Command |
 |------|---------|
-| Create arena | `/tgsg create <name> RedLightGreenLight` |
+| Create Red Light arena | `/tgsg create <name> RedLightGreenLight` |
+| Create Holi arena | `/tgsg create <name> Holi` |
 | Set boundaries | `/tgsg <name> setpos1` and `setpos2` |
-| Set spawn area | `/tgsg <name> setstart1` and `setstart2` |
-| Set win zone | `/tgsg <name> setwin1` and `setwin2` |
+| Set spawn area (RLGL only) | `/tgsg <name> setstart1` and `setstart2` |
+| Set win zone (RLGL only) | `/tgsg <name> setwin1` and `setwin2` |
 | Set lobby | `/tgsg <name> setlobby` |
 | Set spectator | `/tgsg <name> setspec` |
 | Save arena | `/tgsg <name> save` |
 | Edit settings | `/tgsg <name> edit` |
 | Join arena | `/tgsg <name> join` |
+| Leave arena | `/tgsg leave` |
 | Start game | `/tgsg <name> start` |
 | Stop game | `/tgsg <name> stop` |
 | List arenas | `/tgsg list` |
@@ -562,26 +612,20 @@ For a basic 40-block straightaway arena:
 
 Now that you have your first arena set up:
 
-1. Test the game with friends
+1. Test both game modes with friends
 2. Adjust time limits and settings based on feedback
-3. Build additional arenas for variety
+3. Build multiple arenas of different types
 4. Experiment with different arena layouts and themes
-5. Create obstacle courses or themed environments
+5. For Red Light Green Light: Create obstacle courses or themed environments
+6. For Holi: Add strategic cover and multiple levels for tactical gameplay
+7. Mix both game types for variety in events
 
-Stay tuned for future updates with new minigames!
+Both game modes offer unique experiences - use Red Light Green Light for competitive tournaments and Holi for casual fun events!
 
 ---
 
 **Developed by Techinpoint Gamerz (TG)**
 **Version 1.2**
-**Requirements: Java 21+, Paper/Spigot 1.21.1+**
+**Server Type:** Paper 1.21.1+
 
-### What's New in Version 1.2?
-- ✅ Fixed teleportation bug during countdown
-- ✅ Enhanced GUI with improved visual design
-- ✅ Arena setup completion notifications
-- ✅ Auto-start feature with minimum players
-- ✅ Migrated to Paper API with Java 21
-- ✅ Professional polish and improvements
-
-Enjoy your enhanced Squid Game experience!
+Enjoy your Squid Game experience!

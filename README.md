@@ -1,49 +1,37 @@
 # TG SquidGame Plugin
 
-**Version:** 1.1
+**Version:** 1.2
 **Author:** Techinpoint Gamerz (TG)
-**Minecraft Version:** 1.21.1+
-**Server Type:** Paper (recommended), Spigot compatible
-**Java Requirement:** Java 21+
+**Minecraft Version:** 1.21+
+**Server Type:** Paper 1.21.1+
 
 ---
 
 ## Overview
 
-TG SquidGame is a professional modular Minecraft minigame plugin inspired by the popular Squid Game series. This plugin supports multiple arenas in a single world and is designed for easy expansion. Currently features the **Red Light Green Light** minigame with enhanced gameplay mechanics and improved user experience.
+TG SquidGame is a modular Minecraft minigame plugin inspired by the popular Squid Game series and Indian festivals. This plugin supports multiple arenas in a single world and is designed for easy expansion. Current version includes two exciting minigames: **Red Light Green Light** and **Holi Festival**.
 
 ### Key Features
 
 - **Multi-Arena Support**: Run multiple game arenas simultaneously in one world
 - **Modular Design**: Easy to extend with new minigames
-- **Enhanced GUI Configuration**: Intuitive in-game editor with improved visual design
+- **GUI Configuration**: Intuitive in-game editor for arena settings
 - **YAML-Based Setup**: Each arena has its own configuration file
 - **Barrier System**: Automatic arena boundaries using barrier blocks
 - **Spectator Mode**: Eliminated players can spectate the ongoing game
 - **Disconnect Handling**: Players who disconnect are automatically eliminated
 - **BossBar Integration**: Real-time game state display
 - **Sound Effects**: Immersive audio cues for game events
-- **Setup Completion Feedback**: Clear notifications when arena configuration is complete
-- **Improved Countdown System**: No unwanted teleportation during game countdown
-- **Minimum Players & Auto-Start**: Configurable player requirements and automatic game starting
 
 ---
 
 ## Installation
 
-### Requirements
-- **Server Software**: Paper 1.21.1+ (recommended) or Spigot 1.21.1+
-- **Java Version**: Java 21 or higher
-- **Minecraft Version**: 1.21.1+
-
-### Installation Steps
-1. Download the `TG-SquidGame-1.2.jar` file
-2. Ensure your server is running Java 21 or higher
-3. Place the JAR file in your server's `plugins` folder
-4. Restart your server
-5. The plugin will create necessary directories and files:
+1. Download the `TG-SquidGame-1.0.jar` file
+2. Place it in your server's `plugins` folder
+3. Restart your server
+4. The plugin will create necessary directories and files:
    - `plugins/TG-SquidGame/config.yml` - Main configuration
-   - `plugins/TG-SquidGame/messages.yml` - Customizable messages
    - `plugins/TG-SquidGame/arenas/` - Arena configuration files
 
 ---
@@ -56,38 +44,20 @@ TG SquidGame is a professional modular Minecraft minigame plugin inspired by the
 settings:
   prefix: "&6[TG SquidGame]&r "
   defaultTimeLimit: 180
-  countdownTimer: 5
   enableJoinMessage: true
   soundEffects: true
   defaultBossBarColor: "GREEN"
   useComplexRandomLogic: true
-  
-game:
-  # Default game settings
-  startCountdown: 5  # seconds before game starts
-  defaultGameTime: 180  # seconds for game duration
-  movementThreshold: 0.15  # distance threshold for movement detection
-  
-arena:
-  # Arena-specific settings
-  autoSaveOnEdit: false  # whether to auto-save when exiting edit mode
-  requireEditModeForSave: true  # require edit mode to use save command
 ```
 
 **Configuration Options:**
 
-- `prefix`: Chat message prefix for all plugin messages
+- `prefix`: Chat message prefix
 - `defaultTimeLimit`: Default game duration in seconds
-- `countdownTimer`: Countdown duration before game starts
 - `enableJoinMessage`: Show messages when players join arenas
 - `soundEffects`: Enable/disable sound effects globally
 - `defaultBossBarColor`: Default BossBar color (GREEN, RED, BLUE, etc.)
 - `useComplexRandomLogic`: Use advanced randomization for light changes
-- `startCountdown`: Seconds of countdown before game begins
-- `defaultGameTime`: Default duration for games
-- `movementThreshold`: Sensitivity for movement detection during red light
-- `autoSaveOnEdit`: Automatically save arena when exiting edit mode
-- `requireEditModeForSave`: Require edit mode to use save command
 
 ### Arena Configuration
 
@@ -110,43 +80,12 @@ arena:
   timeLimit: 180
   randomLogic: "complex"
   soundEnabled: true
-  minPlayers: 2
-  autoStartTimer: 30
 
 gui:
   name: "&6Red Light Settings"
-  size: 45
+  size: 27
   items:
-    timeLimit:
-      slot: 11
-      name: "&a⏰ Time Limit"
-      lore:
-        - "&7Current: &f{timeLimit} seconds"
-        - "&7Click to change"
-    minPlayers:
-      slot: 13
-      name: "&b👥 Minimum Players"
-      lore:
-        - "&b⚙ Minimum Players Required"
-        - ""
-        - "&bCurrent Value: &f{minPlayers}"
-        - ""
-        - "&aLeft Click: &f+1 player"
-        - "&cRight Click: &f-1 player"
-        - "&aShift + Left: &f+5 players"
-        - "&cShift + Right: &f-5 players"
-    autoStartTimer:
-      slot: 15
-      name: "&e⏱ Auto-Start Timer"
-      lore:
-        - "&e⚙ Auto-Start Timer Settings"
-        - ""
-        - "&eCurrent Value: &f{autoStartTimer} seconds"
-        - ""
-        - "&aLeft Click: &f+5 seconds"
-        - "&cRight Click: &f-5 seconds"
-        - "&aShift + Left: &f+30 seconds"
-        - "&cShift + Right: &f-30 seconds"
+    # GUI item configurations
 ```
 
 ---
@@ -160,21 +99,21 @@ gui:
 | `/tgsg` or `/sg` | Show help menu | - |
 | `/tgsg reload` | Reload plugin configuration | `tgsg.admin` |
 | `/tgsg list` | List all arenas | `tgsg.admin` |
-| `/tgsg create <name> <type>` | Create a new arena | `tgsg.admin` |
+| `/tgsg create <name> <type>` | Create a new arena (RedLightGreenLight or Holi) | `tgsg.admin` |
 | `/tgsg delete <name>` | Delete an arena | `tgsg.admin` |
 
 ### Arena Setup Commands
 
 | Command | Description | Permission |
 |---------|-------------|------------|
-| `/tgsg <arena> setpos1` | Set arena corner 1 | `tgsg.admin` |
-| `/tgsg <arena> setpos2` | Set arena corner 2 | `tgsg.admin` |
-| `/tgsg <arena> setstart1` | Set start area corner 1 | `tgsg.admin` |
-| `/tgsg <arena> setstart2` | Set start area corner 2 | `tgsg.admin` |
-| `/tgsg <arena> setwin1` | Set win zone corner 1 | `tgsg.admin` |
-| `/tgsg <arena> setwin2` | Set win zone corner 2 | `tgsg.admin` |
-| `/tgsg <arena> setlobby` | Set lobby spawn point | `tgsg.admin` |
-| `/tgsg <arena> setspec` | Set spectator spawn point | `tgsg.admin` |
+| `/tgsg <arena> setpos1` | Set arena corner 1 (Required for all games) | `tgsg.admin` |
+| `/tgsg <arena> setpos2` | Set arena corner 2 (Required for all games) | `tgsg.admin` |
+| `/tgsg <arena> setstart1` | Set start area corner 1 (Red Light Green Light only) | `tgsg.admin` |
+| `/tgsg <arena> setstart2` | Set start area corner 2 (Red Light Green Light only) | `tgsg.admin` |
+| `/tgsg <arena> setwin1` | Set win zone corner 1 (Red Light Green Light only) | `tgsg.admin` |
+| `/tgsg <arena> setwin2` | Set win zone corner 2 (Red Light Green Light only) | `tgsg.admin` |
+| `/tgsg <arena> setlobby` | Set lobby spawn point (Required for all games) | `tgsg.admin` |
+| `/tgsg <arena> setspec` | Set spectator spawn point (Required for all games) | `tgsg.admin` |
 
 ### Arena Management Commands
 
@@ -193,6 +132,7 @@ gui:
 | `/tgsg <arena> start` | Start the game | `tgsg.admin` |
 | `/tgsg <arena> stop` | Stop the game | `tgsg.admin` |
 | `/tgsg <arena> join` | Join an arena | - |
+| `/tgsg leave` | Leave all arenas | - |
 
 ---
 
@@ -203,52 +143,130 @@ gui:
 
 ---
 
-## Red Light Green Light Game
+## Game Modes
 
-### How It Works
+### Red Light Green Light Game
 
-1. **Player Joining**: Players join the arena and wait in the lobby
-2. **Auto-Start**: Game automatically starts when minimum players join (configurable)
-3. **Countdown**: 5-second countdown without teleportation (players stay in current positions)
-4. **Green Light Phase**: Players can move freely toward the win zone (4-10 seconds)
-5. **Red Light Phase**: Players must freeze completely (4-10 seconds)
-6. **Movement Detection**: Players who move during red light are eliminated (0.15 block threshold)
-7. **Win Condition**: Players who reach the win zone are declared winners
-8. **Time Limit**: Game ends after the configured time limit
+Classic Squid Game minigame where players must reach the finish line while following light signals.
 
-### Game Mechanics
+#### How It Works
 
-#### Countdown System (v1.2 Improvement)
-- Players are **not** teleported during the 5-second countdown
-- Players start the game from their current position when countdown ends
-- This prevents unwanted teleportation and maintains player positioning
+1. **Game Start**: All players are teleported to the starting area
+2. **Green Light Phase**: Players can move freely (4-10 seconds)
+3. **Red Light Phase**: Players must freeze (4-10 seconds)
+4. **Movement Detection**: Players who move during red light are eliminated
+5. **Win Condition**: First players to reach the win zone are declared winners
+6. **Time Limit**: Game ends after the configured time limit
 
-#### Movement Detection
-- **Threshold**: 0.15 blocks (very sensitive)
-- **Grace Period**: 10 ticks (0.5 seconds) after red light starts
-- **Detection**: Tracks X, Y, and Z coordinate changes
-- **Elimination**: Instant elimination for movement during red light
+#### Setup Requirements
 
-#### Auto-Start Feature
-- **Minimum Players**: Configurable per arena (default: 2)
-- **Auto-Start Timer**: Configurable countdown when minimum players reached
-- **Manual Override**: Admins can still manually start games
+For Red Light Green Light arenas, you must configure:
+- Arena boundaries (pos1, pos2)
+- Starting area (startPos1, startPos2)
+- Win zone (winPos1, winPos2)
+- Lobby spawn point
+- Spectator spawn point
 
-### Elimination Rules
+#### Elimination Rules
 
 - Moving during red light = Instant elimination
 - Leaving arena bounds = Instant elimination
 - Disconnecting = Automatic elimination
 - Eliminated players become spectators
 
+---
+
+### Holi Festival Game
+
+Indian festival-inspired minigame where players spray colorful particles at each other to score points.
+
+#### How It Works
+
+1. **Game Start**: All players receive Holi Pichkari (color spray gun)
+2. **Objective**: Spray colors on other players to score points
+3. **Scoring**: Each successful hit adds 1 point to your score
+4. **Cooldown**: 3-second cooldown between spray uses
+5. **Win Condition**: Player with most hits wins at the end
+6. **Time Limit**: Default 10 minutes (configurable)
+
+#### Setup Requirements
+
+For Holi arenas, you only need to configure:
+- Arena boundaries (pos1, pos2)
+- Lobby spawn point
+- Spectator spawn point
+
+Note: Start zones and win zones are not required for Holi.
+
+#### Gameplay Features
+
+- **Pichkari (Spray Gun)**: Right-click to spray vibrant colors
+- **Color Effects**: Hit players glow and display particle effects
+- **Leaderboard**: Top 5 players displayed at game end
+- **Fireworks**: Victory celebration for the champion
+- **No Damage**: PvP damage is disabled, only color scoring
+
+#### Configuration
+
+Customize Holi settings in `config.yml`:
+
+```yaml
+holi:
+  duration: 600  # Game duration in seconds
+  pichkari:
+    name: "&bHoli Pichkari"
+    cooldown: 3  # Cooldown in seconds
+    range: 10.0  # Spray range in blocks
+  colors:
+    - RED
+    - BLUE
+    - GREEN
+    - YELLOW
+    - PURPLE
+    - ORANGE
+  bossbar:
+    text: "&bHoli Festival - {time} remaining"
+    color: "BLUE"
+    style: "SOLID"
+  fireworks: true
+```
+
+---
+
 ### Spectator Mode
 
+Both game modes support spectator functionality:
 - Eliminated and winning players enter spectator mode
 - Can freely fly within arena bounds
 - Cannot interfere with active players
 - Must stay within arena boundaries
 
 ---
+
+## Building from Source
+
+### Requirements
+
+- Java 21 or higher
+- Maven 3.6+
+- Paper 1.21.1+ (Spigot compatible)
+
+### Build Instructions
+
+```bash
+git clone <repository-url>
+cd TG-SquidGame
+mvn clean package
+```
+
+The compiled JAR will be in `target/TG-SquidGame-1.2.jar`
+
+---
+
+## Available Minigames
+
+- Red Light Green Light
+- Holi Festival
 
 ## Future Minigames (Planned)
 
@@ -265,8 +283,7 @@ gui:
 **Developed by:** Techinpoint Gamerz (TG)
 **Version:** 1.2
 **Minecraft Version:** 1.21.1+
-**Server Software:** Paper (recommended), Spigot compatible
-**Java Requirement:** Java 21+
+**Server Type:** Paper (Spigot compatible)
 
 For support, please contact Techinpoint Gamerz.
 
@@ -280,13 +297,15 @@ This plugin is proprietary software. All rights reserved by Techinpoint Gamerz.
 
 ## Changelog
 
-### Version 1.1 (Latest)
-- **Fixed**: Teleportation bug during countdown - players no longer teleported during 5-second countdown
-- **Enhanced**: GUI design with improved lore, Unicode symbols, and color-coded information
-- **Added**: Arena setup completion notifications when all positions are configured
-- **Upgraded**: Migrated to Paper API with Java 21 support for better performance
-- **Improved**: Minimum players and auto-start timer GUI with detailed click actions
-- **Enhanced**: Professional polish throughout the plugin interface
+### Version 1.2 (Current)
+- Added Holi Festival minigame
+- Migrated to Paper API with Java 21
+- Enhanced GUI with improved player controls
+- Multiple arena support improvements
+- Auto-start system with configurable timers
+- Player can join multiple arenas simultaneously
+- Enhanced particle effects and visual feedback
+- Improved game state management
 
 ### Version 1.0 (Initial Release)
 - Red Light Green Light minigame implementation
